@@ -43,20 +43,6 @@ void TIM_StructInit(TIM_InitTypeDef* TIM_InitStruct)
     TIM_InitStruct->TIME_CNT = 0;								//计数器初始值设为0
 }
 
-
-void timer_init(uint32_t msec)
-{
-
-
-    TIM_InitTypeDef TIM_InitStruct;
-
-    TIM_StructInit(&TIM_InitStruct);
-    TIM_InitStruct.TIME_STP =8*msec;
-
-    TIM_Init(&TIM_InitStruct);
-
-}
-
 /**
   * @brief  Enables or disables the specified TIM peripheral.
   * @param  TIMx: select the TIMER peripheral.
@@ -190,4 +176,12 @@ void TIM_ClearIT(uint32_t TIM_FLAG)
     /* Clear the flags */
     TIMER_CFG |= TIM_FLAG;
     INT_CLR |= IRQ_TIMER;
+}
+
+void timer_init(uint32_t msec)
+{
+    TIM_InitTypeDef TIM_InitStruct;
+    TIM_StructInit(&TIM_InitStruct);
+    TIM_InitStruct.TIME_STP =8000*msec;
+    TIM_Init(&TIM_InitStruct);
 }

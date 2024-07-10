@@ -2,9 +2,10 @@
 #define _LS1X_H_
 
 #include "test.h"
-#define LS1C102 
+// #define LS1C102 
 /*****************************************************/
 /******************  NORMAL ADDRESS SPACE  ******************/
+#define LS1C102 1
 #if defined(LS1C102)
 #define UNCACHED_MEMORY_ADDR 	0xa0000000
 #define UNCACHED_TO_PHYS(x)     ((x) & 0x1fffffff)
@@ -257,7 +258,7 @@ typedef struct
 #define UART2              ((UART_TypeDef *) UART2_BASEADDR)
 #define UART_PRINT				    UART1
 //#define UART_PRINT				UART1
-//#define UART_PRINT				UART2
+// #define UART_PRINT				UART2
 
 
 /******************  EXTI REGS  ******************/

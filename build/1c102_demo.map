@@ -2,17 +2,19 @@
 Allocating common symbols
 Common symbol       size              file
 
-Read_length         0x1               1c102_main.o
+Read_length         0x1               esp8266.o
 uart_rec            0xa               init.o
 nmi_caller          0x4               1c102_cmdline.o
 exti_irq_handle     0x80              1c102_Interrupt.o
 STS                 0x1               ls1c102_i2c.o
 Circular_queue      0x130             queue.o
+Keynum              0x1               1c102_main.o
 uart_rec_len        0x1               init.o
 _rand_next          0x4               ls1x_printf.o
 str                 0x32              1c102_main.o
 Flash_pe            0x1               ls1x_flash.o
-Read_Buffer         0x12c             1c102_main.o
+OLED_GRAM           0x400             oled.o
+Read_Buffer         0x12c             esp8266.o
 
 Discarded input sections
 
@@ -105,16 +107,6 @@ Discarded input sections
                 0x0000000000000000      0x414 ls1x_printf.o
  .rodata.myprintf2
                 0x0000000000000000      0x150 ls1x_printf.o
- .text.vsputs   0x0000000000000000       0x54 ls1x_printf.o
- .text.vsputchar
-                0x0000000000000000       0x44 ls1x_printf.o
- .text.vsprintbase
-                0x0000000000000000      0x17c ls1x_printf.o
- .text.vsprintf
-                0x0000000000000000      0x3d8 ls1x_printf.o
- .rodata.vsprintf
-                0x0000000000000000      0x150 ls1x_printf.o
- .text.sprintf  0x0000000000000000       0x6c ls1x_printf.o
  .text.rand     0x0000000000000000       0x5c ls1x_printf.o
  .eh_frame      0x0000000000000000      0x27c ls1x_printf.o
  COMMON         0x0000000000000000        0x4 ls1x_printf.o
@@ -123,8 +115,6 @@ Discarded input sections
  .bss           0x0000000000000000        0x0 ls1x_uart.o
  .text.Uart_init
                 0x0000000000000000       0xa4 ls1x_uart.o
- .text.UART_SendDataALL
-                0x0000000000000000       0x78 ls1x_uart.o
  .text.UART_GetFlagStatus
                 0x0000000000000000       0x64 ls1x_uart.o
  .text.UART_GetITStatus
@@ -187,8 +177,6 @@ Discarded input sections
  .bss           0x0000000000000000        0x0 ls1x_latimer.o
  .text.close_count
                 0x0000000000000000       0x24 ls1x_latimer.o
- .text.delay_us
-                0x0000000000000000       0x38 ls1x_latimer.o
  .text.delay_s  0x0000000000000000       0x3c ls1x_latimer.o
  .text.SetTime  0x0000000000000000       0x54 ls1x_latimer.o
  .text.CompareTime
@@ -200,14 +188,11 @@ Discarded input sections
  .text.memcmp   0x0000000000000000       0x88 ls1x_string.o
  .text.memcpy   0x0000000000000000       0x70 ls1x_string.o
  .text.strstr   0x0000000000000000       0xe0 ls1x_string.o
- .text.pstrstr  0x0000000000000000       0xc8 ls1x_string.o
  .text.strchr   0x0000000000000000       0x80 ls1x_string.o
  .text.atoi     0x0000000000000000       0xe4 ls1x_string.o
  .text.itoa     0x0000000000000000      0x17c ls1x_string.o
  .text.strcat   0x0000000000000000       0xa0 ls1x_string.o
  .text.strcmp   0x0000000000000000       0x84 ls1x_string.o
- .text.strcpy   0x0000000000000000       0x5c ls1x_string.o
- .text.strlen   0x0000000000000000       0x4c ls1x_string.o
  .text.isContained
                 0x0000000000000000       0x78 ls1x_string.o
  .text.strtok_r
@@ -484,7 +469,6 @@ Discarded input sections
                 0x0000000000000000       0x44 1c102_Interrupt.o
  .text.INTC     0x0000000000000000       0x1c 1c102_Interrupt.o
  .text.RING     0x0000000000000000       0x1c 1c102_Interrupt.o
- .data.state    0x0000000000000000        0x4 1c102_Interrupt.o
  .eh_frame      0x0000000000000000      0x624 1c102_Interrupt.o
  COMMON         0x0000000000000000       0x80 1c102_Interrupt.o
  .text          0x0000000000000000        0x0 iic.o
@@ -496,24 +480,13 @@ Discarded input sections
  .text.IIC_Read_Byte
                 0x0000000000000000       0xb4 iic.o
  .eh_frame      0x0000000000000000      0x1bc iic.o
- .text          0x0000000000000000        0x0 led.o
- .data          0x0000000000000000        0x0 led.o
- .bss           0x0000000000000000        0x0 led.o
- .text.LED_Init
-                0x0000000000000000       0x54 led.o
- .text.LED_On   0x0000000000000000       0x3c led.o
- .text.LED_Off  0x0000000000000000       0x4c led.o
- .comment       0x0000000000000000       0x12 led.o
- .eh_frame      0x0000000000000000       0x80 led.o
+ .text          0x0000000000000000        0x0 dht11.o
+ .data          0x0000000000000000        0x0 dht11.o
+ .bss           0x0000000000000000        0x0 dht11.o
+ .eh_frame      0x0000000000000000      0x148 dht11.o
  .text          0x0000000000000000        0x0 oled.o
  .data          0x0000000000000000        0x0 oled.o
  .bss           0x0000000000000000        0x0 oled.o
- .rodata.asc2_1608
-                0x0000000000000000      0x5f0 oled.o
- .rodata.tfont16
-                0x0000000000000000      0x1ea oled.o
- .rodata.tfont32
-                0x0000000000000000      0xa3c oled.o
  .text.OLED_Display_On
                 0x0000000000000000       0x48 oled.o
  .text.OLED_Display_Off
@@ -522,32 +495,38 @@ Discarded input sections
                 0x0000000000000000       0xa8 oled.o
  .text.OLED_DrawBMP
                 0x0000000000000000      0x10c oled.o
- .text.OLED_ShowChar
-                0x0000000000000000      0x128 oled.o
- .text.OLED_ShowString
-                0x0000000000000000      0x12c oled.o
- .rodata        0x0000000000000000        0x6 oled.o
- .text.OLED_ShowInt32Num
-                0x0000000000000000      0x130 oled.o
- .text.OLED_DrawFont16
-                0x0000000000000000      0x19c oled.o
- .text.OLED_DrawFont32
-                0x0000000000000000      0x1a8 oled.o
- .text.OLED_Show_Str
-                0x0000000000000000      0x270 oled.o
- .eh_frame      0x0000000000000000      0x260 oled.o
+ .text.OLED_Refresh_Gram
+                0x0000000000000000       0xbc oled.o
+ .eh_frame      0x0000000000000000      0x288 oled.o
+ COMMON         0x0000000000000000      0x400 oled.o
+ .text          0x0000000000000000        0x0 key.o
+ .data          0x0000000000000000        0x0 key.o
+ .bss           0x0000000000000000        0x0 key.o
+ .eh_frame      0x0000000000000000       0x60 key.o
+ .text          0x0000000000000000        0x0 esp8266.o
+ .data          0x0000000000000000        0x0 esp8266.o
+ .bss           0x0000000000000000        0x0 esp8266.o
+ .text.esp8266_send_cmd
+                0x0000000000000000       0xdc esp8266.o
+ .text.esp8266_send_data
+                0x0000000000000000       0x3c esp8266.o
+ .eh_frame      0x0000000000000000       0x88 esp8266.o
  .text          0x0000000000000000        0x0 queue.o
  .data          0x0000000000000000        0x0 queue.o
  .bss           0x0000000000000000        0x0 queue.o
+ .text.Queue_Init
+                0x0000000000000000       0x4c queue.o
  .text.Queue_isFull
                 0x0000000000000000       0x64 queue.o
  .eh_frame      0x0000000000000000      0x114 queue.o
  .text          0x0000000000000000        0x0 1c102_main.o
  .data          0x0000000000000000        0x0 1c102_main.o
  .bss           0x0000000000000000        0x0 1c102_main.o
- .bss.received_data
-                0x0000000000000000        0x1 1c102_main.o
- .eh_frame      0x0000000000000000       0x34 1c102_main.o
+ .eh_frame      0x0000000000000000       0xfc 1c102_main.o
+ .text          0x0000000000000000        0x0 BEEP.o
+ .data          0x0000000000000000        0x0 BEEP.o
+ .bss           0x0000000000000000        0x0 BEEP.o
+ .eh_frame      0x0000000000000000       0x38 BEEP.o
 
 Memory Configuration
 
@@ -560,7 +539,7 @@ DRAM             0x0000000080001000 0x0000000000001000 rw
 Linker script and memory map
 
 
-.text           0x000000001c000000     0x5060
+.text           0x000000001c000000     0x7d44
                 0x000000001c000000                . = ALIGN (0x4)
  *(.text .text.*)
  .text._start   0x000000001c000000     0x1128 start.o
@@ -606,450 +585,610 @@ Linker script and memory map
  .text.myprintf
                 0x000000001c001b94      0x3a4 ls1x_printf.o
                 0x000000001c001b94                myprintf
+ .text.vsputs   0x000000001c001f38       0x54 ls1x_printf.o
+                0x000000001c001f38                vsputs
+ .text.vsputchar
+                0x000000001c001f8c       0x44 ls1x_printf.o
+                0x000000001c001f8c                vsputchar
+ .text.vsprintbase
+                0x000000001c001fd0      0x17c ls1x_printf.o
+                0x000000001c001fd0                vsprintbase
+ .text.vsprintf
+                0x000000001c00214c      0x3d8 ls1x_printf.o
+                0x000000001c00214c                vsprintf
+ .text.sprintf  0x000000001c002524       0x6c ls1x_printf.o
+                0x000000001c002524                sprintf
  .text.UART_Init
-                0x000000001c001f38      0x2fc ls1x_uart.o
-                0x000000001c001f38                UART_Init
+                0x000000001c002590      0x2fc ls1x_uart.o
+                0x000000001c002590                UART_Init
  .text.UART_StructInit
-                0x000000001c002234       0x7c ls1x_uart.o
-                0x000000001c002234                UART_StructInit
+                0x000000001c00288c       0x7c ls1x_uart.o
+                0x000000001c00288c                UART_StructInit
  .text.UART_ITConfig
-                0x000000001c0022b0       0x88 ls1x_uart.o
-                0x000000001c0022b0                UART_ITConfig
+                0x000000001c002908       0x88 ls1x_uart.o
+                0x000000001c002908                UART_ITConfig
  .text.UART_SendData
-                0x000000001c002338       0x4c ls1x_uart.o
-                0x000000001c002338                UART_SendData
+                0x000000001c002990       0x4c ls1x_uart.o
+                0x000000001c002990                UART_SendData
+ .text.UART_SendDataALL
+                0x000000001c0029dc       0x78 ls1x_uart.o
+                0x000000001c0029dc                UART_SendDataALL
  .text.UART_ReceiveData
-                0x000000001c002384       0x4c ls1x_uart.o
-                0x000000001c002384                UART_ReceiveData
+                0x000000001c002a54       0x4c ls1x_uart.o
+                0x000000001c002a54                UART_ReceiveData
  .text.Uart0_init
-                0x000000001c0023d0       0xc4 ls1x_uart.o
-                0x000000001c0023d0                Uart0_init
+                0x000000001c002aa0       0xc4 ls1x_uart.o
+                0x000000001c002aa0                Uart0_init
  .text.Uart1_init
-                0x000000001c002494       0x84 ls1x_uart.o
-                0x000000001c002494                Uart1_init
+                0x000000001c002b64       0x84 ls1x_uart.o
+                0x000000001c002b64                Uart1_init
  .text.CLOCK_WaitForHSEStartUp
-                0x000000001c002518       0x9c ls1x_clock.o
-                0x000000001c002518                CLOCK_WaitForHSEStartUp
+                0x000000001c002be8       0x9c ls1x_clock.o
+                0x000000001c002be8                CLOCK_WaitForHSEStartUp
  .text.CLOCK_WaitForLSEStartUp
-                0x000000001c0025b4       0xe4 ls1x_clock.o
-                0x000000001c0025b4                CLOCK_WaitForLSEStartUp
+                0x000000001c002c84       0xe4 ls1x_clock.o
+                0x000000001c002c84                CLOCK_WaitForLSEStartUp
  .text.CLOCK_HSEConfig
-                0x000000001c002698       0xb4 ls1x_clock.o
-                0x000000001c002698                CLOCK_HSEConfig
+                0x000000001c002d68       0xb4 ls1x_clock.o
+                0x000000001c002d68                CLOCK_HSEConfig
  .text.CLOCK_LSEConfig
-                0x000000001c00274c       0x68 ls1x_clock.o
-                0x000000001c00274c                CLOCK_LSEConfig
+                0x000000001c002e1c       0x68 ls1x_clock.o
+                0x000000001c002e1c                CLOCK_LSEConfig
  .text.CLOCK_StructInit
-                0x000000001c0027b4       0x64 ls1x_clock.o
-                0x000000001c0027b4                CLOCK_StructInit
+                0x000000001c002e84       0x64 ls1x_clock.o
+                0x000000001c002e84                CLOCK_StructInit
  .text.CLOCK_Init
-                0x000000001c002818      0x23c ls1x_clock.o
-                0x000000001c002818                CLOCK_Init
+                0x000000001c002ee8      0x23c ls1x_clock.o
+                0x000000001c002ee8                CLOCK_Init
  .text.SystemClockInit
-                0x000000001c002a54       0x98 ls1x_clock.o
-                0x000000001c002a54                SystemClockInit
+                0x000000001c003124       0x98 ls1x_clock.o
+                0x000000001c003124                SystemClockInit
  .text.DisableInt
-                0x000000001c002aec       0x24 ls1x_common.o
-                0x000000001c002aec                DisableInt
+                0x000000001c0031bc       0x24 ls1x_common.o
+                0x000000001c0031bc                DisableInt
  .text.EnableInt
-                0x000000001c002b10       0x24 ls1x_common.o
-                0x000000001c002b10                EnableInt
+                0x000000001c0031e0       0x24 ls1x_common.o
+                0x000000001c0031e0                EnableInt
  .text.Set_Timer_stop
-                0x000000001c002b34       0x20 ls1x_common.o
-                0x000000001c002b34                Set_Timer_stop
+                0x000000001c003204       0x20 ls1x_common.o
+                0x000000001c003204                Set_Timer_stop
  .text.Set_Timer_clear
-                0x000000001c002b54       0x24 ls1x_common.o
-                0x000000001c002b54                Set_Timer_clear
+                0x000000001c003224       0x24 ls1x_common.o
+                0x000000001c003224                Set_Timer_clear
  .text.Wake_Set
-                0x000000001c002b78       0xac ls1x_common.o
-                0x000000001c002b78                Wake_Set
+                0x000000001c003248       0xac ls1x_common.o
+                0x000000001c003248                Wake_Set
  .text.PMU_GetRstRrc
-                0x000000001c002c24       0x6c ls1x_pmu.o
-                0x000000001c002c24                PMU_GetRstRrc
+                0x000000001c0032f4       0x6c ls1x_pmu.o
+                0x000000001c0032f4                PMU_GetRstRrc
  .text.PMU_GetBootSpiStatus
-                0x000000001c002c90       0x50 ls1x_pmu.o
-                0x000000001c002c90                PMU_GetBootSpiStatus
+                0x000000001c003360       0x50 ls1x_pmu.o
+                0x000000001c003360                PMU_GetBootSpiStatus
  .text.ls1x_logo
-                0x000000001c002ce0       0x9c ls1x_logo.o
-                0x000000001c002ce0                ls1x_logo
+                0x000000001c0033b0       0x9c ls1x_logo.o
+                0x000000001c0033b0                ls1x_logo
  .text.get_count
-                0x000000001c002d7c       0x2c ls1x_latimer.o
-                0x000000001c002d7c                get_count
+                0x000000001c00344c       0x2c ls1x_latimer.o
+                0x000000001c00344c                get_count
  .text.open_count
-                0x000000001c002da8       0x24 ls1x_latimer.o
-                0x000000001c002da8                open_count
+                0x000000001c003478       0x24 ls1x_latimer.o
+                0x000000001c003478                open_count
  .text.start_count
-                0x000000001c002dcc       0x48 ls1x_latimer.o
-                0x000000001c002dcc                start_count
+                0x000000001c00349c       0x48 ls1x_latimer.o
+                0x000000001c00349c                start_count
  .text.stop_count
-                0x000000001c002e14       0x88 ls1x_latimer.o
-                0x000000001c002e14                stop_count
+                0x000000001c0034e4       0x88 ls1x_latimer.o
+                0x000000001c0034e4                stop_count
  .text.delay_cycle
-                0x000000001c002e9c       0x60 ls1x_latimer.o
-                0x000000001c002e9c                delay_cycle
+                0x000000001c00356c       0x60 ls1x_latimer.o
+                0x000000001c00356c                delay_cycle
+ .text.delay_us
+                0x000000001c0035cc       0x38 ls1x_latimer.o
+                0x000000001c0035cc                delay_us
  .text.delay_ms
-                0x000000001c002efc       0x40 ls1x_latimer.o
-                0x000000001c002efc                delay_ms
- .text.memset   0x000000001c002f3c       0x60 ls1x_string.o
-                0x000000001c002f3c                memset
+                0x000000001c003604       0x40 ls1x_latimer.o
+                0x000000001c003604                delay_ms
+ .text.memset   0x000000001c003644       0x60 ls1x_string.o
+                0x000000001c003644                memset
+ .text.pstrstr  0x000000001c0036a4       0xc8 ls1x_string.o
+                0x000000001c0036a4                pstrstr
+ .text.strcpy   0x000000001c00376c       0x5c ls1x_string.o
+                0x000000001c00376c                strcpy
+ .text.strlen   0x000000001c0037c8       0x4c ls1x_string.o
+                0x000000001c0037c8                strlen
  .text.EXTI_ClearITPendingBit
-                0x000000001c002f9c       0x3c ls1x_exti.o
-                0x000000001c002f9c                EXTI_ClearITPendingBit
+                0x000000001c003814       0x3c ls1x_exti.o
+                0x000000001c003814                EXTI_ClearITPendingBit
  .text.WDG_getOddValue
-                0x000000001c002fd8       0x88 ls1x_wdg.o
+                0x000000001c003850       0x88 ls1x_wdg.o
  .text.WDG_SetWatchDog
-                0x000000001c003060       0x8c ls1x_wdg.o
-                0x000000001c003060                WDG_SetWatchDog
+                0x000000001c0038d8       0x8c ls1x_wdg.o
+                0x000000001c0038d8                WDG_SetWatchDog
  .text.WDG_DogFeed
-                0x000000001c0030ec       0x2c ls1x_wdg.o
-                0x000000001c0030ec                WDG_DogFeed
- .text.WdgInit  0x000000001c003118       0x30 ls1x_wdg.o
-                0x000000001c003118                WdgInit
+                0x000000001c003964       0x2c ls1x_wdg.o
+                0x000000001c003964                WDG_DogFeed
+ .text.WdgInit  0x000000001c003990       0x30 ls1x_wdg.o
+                0x000000001c003990                WdgInit
  .text.TOUCH_GetBaseVal
-                0x000000001c003148       0x4c ls1c102_touch.o
-                0x000000001c003148                TOUCH_GetBaseVal
+                0x000000001c0039c0       0x4c ls1c102_touch.o
+                0x000000001c0039c0                TOUCH_GetBaseVal
  .text.TOUCH_GetCountValue
-                0x000000001c003194       0x4c ls1c102_touch.o
-                0x000000001c003194                TOUCH_GetCountValue
+                0x000000001c003a0c       0x4c ls1c102_touch.o
+                0x000000001c003a0c                TOUCH_GetCountValue
  .text.Printf_KeyChannel
-                0x000000001c0031e0       0x7c ls1c102_touch.o
-                0x000000001c0031e0                Printf_KeyChannel
+                0x000000001c003a58       0x7c ls1c102_touch.o
+                0x000000001c003a58                Printf_KeyChannel
  .text.Printf_KeyType
-                0x000000001c00325c       0x8c ls1c102_touch.o
-                0x000000001c00325c                Printf_KeyType
+                0x000000001c003ad4       0x8c ls1c102_touch.o
+                0x000000001c003ad4                Printf_KeyType
  .text.Printf_KeyVal
-                0x000000001c0032e8      0x254 ls1c102_touch.o
-                0x000000001c0032e8                Printf_KeyVal
+                0x000000001c003b60      0x254 ls1c102_touch.o
+                0x000000001c003b60                Printf_KeyVal
  .text.TIM_Init
-                0x000000001c00353c       0xd8 ls1c102_ptimer.o
-                0x000000001c00353c                TIM_Init
+                0x000000001c003db4       0xd8 ls1c102_ptimer.o
+                0x000000001c003db4                TIM_Init
  .text.TIM_StructInit
-                0x000000001c003614       0x7c ls1c102_ptimer.o
-                0x000000001c003614                TIM_StructInit
- .text.timer_init
-                0x000000001c003690       0x4c ls1c102_ptimer.o
-                0x000000001c003690                timer_init
+                0x000000001c003e8c       0x7c ls1c102_ptimer.o
+                0x000000001c003e8c                TIM_StructInit
  .text.TIM_GetITStatus
-                0x000000001c0036dc       0x4c ls1c102_ptimer.o
-                0x000000001c0036dc                TIM_GetITStatus
+                0x000000001c003f08       0x4c ls1c102_ptimer.o
+                0x000000001c003f08                TIM_GetITStatus
  .text.TIM_ClearIT
-                0x000000001c003728       0x5c ls1c102_ptimer.o
-                0x000000001c003728                TIM_ClearIT
+                0x000000001c003f54       0x5c ls1c102_ptimer.o
+                0x000000001c003f54                TIM_ClearIT
+ .text.timer_init
+                0x000000001c003fb0       0x54 ls1c102_ptimer.o
+                0x000000001c003fb0                timer_init
  .text.exti_gpioa0_irq_handler
-                0x000000001c003784       0x4c 1c102_Interrupt.o
-                0x000000001c003784                exti_gpioa0_irq_handler
+                0x000000001c004004       0x4c 1c102_Interrupt.o
+                0x000000001c004004                exti_gpioa0_irq_handler
  .text.exti_gpioa1_irq_handler
-                0x000000001c0037d0       0x4c 1c102_Interrupt.o
-                0x000000001c0037d0                exti_gpioa1_irq_handler
+                0x000000001c004050       0x4c 1c102_Interrupt.o
+                0x000000001c004050                exti_gpioa1_irq_handler
  .text.exti_gpioa2_irq_handler
-                0x000000001c00381c       0x4c 1c102_Interrupt.o
-                0x000000001c00381c                exti_gpioa2_irq_handler
+                0x000000001c00409c       0x4c 1c102_Interrupt.o
+                0x000000001c00409c                exti_gpioa2_irq_handler
  .text.exti_gpioa3_irq_handler
-                0x000000001c003868       0x4c 1c102_Interrupt.o
-                0x000000001c003868                exti_gpioa3_irq_handler
+                0x000000001c0040e8       0x4c 1c102_Interrupt.o
+                0x000000001c0040e8                exti_gpioa3_irq_handler
  .text.exti_gpioa4_irq_handler
-                0x000000001c0038b4       0x4c 1c102_Interrupt.o
-                0x000000001c0038b4                exti_gpioa4_irq_handler
+                0x000000001c004134       0x4c 1c102_Interrupt.o
+                0x000000001c004134                exti_gpioa4_irq_handler
  .text.exti_gpioa5_irq_handler
-                0x000000001c003900       0x4c 1c102_Interrupt.o
-                0x000000001c003900                exti_gpioa5_irq_handler
+                0x000000001c004180       0x4c 1c102_Interrupt.o
+                0x000000001c004180                exti_gpioa5_irq_handler
  .text.exti_gpioa6_irq_handler
-                0x000000001c00394c       0x4c 1c102_Interrupt.o
-                0x000000001c00394c                exti_gpioa6_irq_handler
+                0x000000001c0041cc       0x4c 1c102_Interrupt.o
+                0x000000001c0041cc                exti_gpioa6_irq_handler
  .text.exti_gpioa7_irq_handler
-                0x000000001c003998       0x4c 1c102_Interrupt.o
-                0x000000001c003998                exti_gpioa7_irq_handler
+                0x000000001c004218       0x4c 1c102_Interrupt.o
+                0x000000001c004218                exti_gpioa7_irq_handler
  .text.exti_gpiob0_irq_handler
-                0x000000001c0039e4       0x4c 1c102_Interrupt.o
-                0x000000001c0039e4                exti_gpiob0_irq_handler
+                0x000000001c004264       0x4c 1c102_Interrupt.o
+                0x000000001c004264                exti_gpiob0_irq_handler
  .text.exti_gpiob1_irq_handler
-                0x000000001c003a30       0x4c 1c102_Interrupt.o
-                0x000000001c003a30                exti_gpiob1_irq_handler
+                0x000000001c0042b0       0x4c 1c102_Interrupt.o
+                0x000000001c0042b0                exti_gpiob1_irq_handler
  .text.exti_gpiob2_irq_handler
-                0x000000001c003a7c       0x4c 1c102_Interrupt.o
-                0x000000001c003a7c                exti_gpiob2_irq_handler
+                0x000000001c0042fc       0x4c 1c102_Interrupt.o
+                0x000000001c0042fc                exti_gpiob2_irq_handler
  .text.exti_gpiob3_irq_handler
-                0x000000001c003ac8       0x4c 1c102_Interrupt.o
-                0x000000001c003ac8                exti_gpiob3_irq_handler
+                0x000000001c004348       0x4c 1c102_Interrupt.o
+                0x000000001c004348                exti_gpiob3_irq_handler
  .text.exti_gpiob4_irq_handler
-                0x000000001c003b14       0x4c 1c102_Interrupt.o
-                0x000000001c003b14                exti_gpiob4_irq_handler
+                0x000000001c004394       0x4c 1c102_Interrupt.o
+                0x000000001c004394                exti_gpiob4_irq_handler
  .text.exti_gpiob5_irq_handler
-                0x000000001c003b60       0x4c 1c102_Interrupt.o
-                0x000000001c003b60                exti_gpiob5_irq_handler
+                0x000000001c0043e0       0x4c 1c102_Interrupt.o
+                0x000000001c0043e0                exti_gpiob5_irq_handler
  .text.exti_gpiob6_irq_handler
-                0x000000001c003bac       0x4c 1c102_Interrupt.o
-                0x000000001c003bac                exti_gpiob6_irq_handler
+                0x000000001c00442c       0x4c 1c102_Interrupt.o
+                0x000000001c00442c                exti_gpiob6_irq_handler
  .text.exti_gpiob7_irq_handler
-                0x000000001c003bf8       0x4c 1c102_Interrupt.o
-                0x000000001c003bf8                exti_gpiob7_irq_handler
+                0x000000001c004478       0x4c 1c102_Interrupt.o
+                0x000000001c004478                exti_gpiob7_irq_handler
  .text.exti_gpioc0_irq_handler
-                0x000000001c003c44       0x4c 1c102_Interrupt.o
-                0x000000001c003c44                exti_gpioc0_irq_handler
+                0x000000001c0044c4       0x4c 1c102_Interrupt.o
+                0x000000001c0044c4                exti_gpioc0_irq_handler
  .text.exti_gpioc1_irq_handler
-                0x000000001c003c90       0x4c 1c102_Interrupt.o
-                0x000000001c003c90                exti_gpioc1_irq_handler
+                0x000000001c004510       0x4c 1c102_Interrupt.o
+                0x000000001c004510                exti_gpioc1_irq_handler
  .text.exti_gpioc2_irq_handler
-                0x000000001c003cdc       0x4c 1c102_Interrupt.o
-                0x000000001c003cdc                exti_gpioc2_irq_handler
+                0x000000001c00455c       0x4c 1c102_Interrupt.o
+                0x000000001c00455c                exti_gpioc2_irq_handler
  .text.exti_gpioc3_irq_handler
-                0x000000001c003d28       0x4c 1c102_Interrupt.o
-                0x000000001c003d28                exti_gpioc3_irq_handler
+                0x000000001c0045a8       0x4c 1c102_Interrupt.o
+                0x000000001c0045a8                exti_gpioc3_irq_handler
  .text.exti_gpioc4_irq_handler
-                0x000000001c003d74       0x4c 1c102_Interrupt.o
-                0x000000001c003d74                exti_gpioc4_irq_handler
+                0x000000001c0045f4       0x4c 1c102_Interrupt.o
+                0x000000001c0045f4                exti_gpioc4_irq_handler
  .text.exti_gpioc5_irq_handler
-                0x000000001c003dc0       0x4c 1c102_Interrupt.o
-                0x000000001c003dc0                exti_gpioc5_irq_handler
+                0x000000001c004640       0x4c 1c102_Interrupt.o
+                0x000000001c004640                exti_gpioc5_irq_handler
  .text.exti_gpioc6_irq_handler
-                0x000000001c003e0c       0x4c 1c102_Interrupt.o
-                0x000000001c003e0c                exti_gpioc6_irq_handler
+                0x000000001c00468c       0x4c 1c102_Interrupt.o
+                0x000000001c00468c                exti_gpioc6_irq_handler
  .text.exti_gpioc7_irq_handler
-                0x000000001c003e58       0x4c 1c102_Interrupt.o
-                0x000000001c003e58                exti_gpioc7_irq_handler
+                0x000000001c0046d8       0x4c 1c102_Interrupt.o
+                0x000000001c0046d8                exti_gpioc7_irq_handler
  .text.exti_gpiod0_irq_handler
-                0x000000001c003ea4       0x4c 1c102_Interrupt.o
-                0x000000001c003ea4                exti_gpiod0_irq_handler
+                0x000000001c004724       0x4c 1c102_Interrupt.o
+                0x000000001c004724                exti_gpiod0_irq_handler
  .text.exti_gpiod1_irq_handler
-                0x000000001c003ef0       0x4c 1c102_Interrupt.o
-                0x000000001c003ef0                exti_gpiod1_irq_handler
+                0x000000001c004770       0x4c 1c102_Interrupt.o
+                0x000000001c004770                exti_gpiod1_irq_handler
  .text.exti_gpiod2_irq_handler
-                0x000000001c003f3c       0x4c 1c102_Interrupt.o
-                0x000000001c003f3c                exti_gpiod2_irq_handler
+                0x000000001c0047bc       0x4c 1c102_Interrupt.o
+                0x000000001c0047bc                exti_gpiod2_irq_handler
  .text.exti_gpiod3_irq_handler
-                0x000000001c003f88       0x4c 1c102_Interrupt.o
-                0x000000001c003f88                exti_gpiod3_irq_handler
+                0x000000001c004808       0x4c 1c102_Interrupt.o
+                0x000000001c004808                exti_gpiod3_irq_handler
  .text.exti_gpiod4_irq_handler
-                0x000000001c003fd4       0x4c 1c102_Interrupt.o
-                0x000000001c003fd4                exti_gpiod4_irq_handler
+                0x000000001c004854       0x4c 1c102_Interrupt.o
+                0x000000001c004854                exti_gpiod4_irq_handler
  .text.exti_gpiod5_irq_handler
-                0x000000001c004020       0x4c 1c102_Interrupt.o
-                0x000000001c004020                exti_gpiod5_irq_handler
+                0x000000001c0048a0       0x4c 1c102_Interrupt.o
+                0x000000001c0048a0                exti_gpiod5_irq_handler
  .text.exti_gpiod6_irq_handler
-                0x000000001c00406c       0x4c 1c102_Interrupt.o
-                0x000000001c00406c                exti_gpiod6_irq_handler
+                0x000000001c0048ec       0x4c 1c102_Interrupt.o
+                0x000000001c0048ec                exti_gpiod6_irq_handler
  .text.exti_gpiod7_irq_handler
-                0x000000001c0040b8       0x4c 1c102_Interrupt.o
-                0x000000001c0040b8                exti_gpiod7_irq_handler
+                0x000000001c004938       0x4c 1c102_Interrupt.o
+                0x000000001c004938                exti_gpiod7_irq_handler
  .text.ext_handler
-                0x000000001c004104       0xb8 1c102_Interrupt.o
-                0x000000001c004104                ext_handler
+                0x000000001c004984       0xb8 1c102_Interrupt.o
+                0x000000001c004984                ext_handler
  .text.TIMER_WAKE_INT
-                0x000000001c0041bc       0x50 1c102_Interrupt.o
-                0x000000001c0041bc                TIMER_WAKE_INT
- .text.TOUCH    0x000000001c00420c       0x94 1c102_Interrupt.o
-                0x000000001c00420c                TOUCH
+                0x000000001c004a3c       0x50 1c102_Interrupt.o
+                0x000000001c004a3c                TIMER_WAKE_INT
+ .text.TOUCH    0x000000001c004a8c       0x94 1c102_Interrupt.o
+                0x000000001c004a8c                TOUCH
  .text.UART2_INT
-                0x000000001c0042a0       0x3c 1c102_Interrupt.o
-                0x000000001c0042a0                UART2_INT
+                0x000000001c004b20       0x3c 1c102_Interrupt.o
+                0x000000001c004b20                UART2_INT
  .text.BAT_FAIL
-                0x000000001c0042dc       0xd8 1c102_Interrupt.o
-                0x000000001c0042dc                BAT_FAIL
+                0x000000001c004b5c       0xd8 1c102_Interrupt.o
+                0x000000001c004b5c                BAT_FAIL
  .text.intc_handler
-                0x000000001c0043b4      0x198 1c102_Interrupt.o
-                0x000000001c0043b4                intc_handler
+                0x000000001c004c34      0x22c 1c102_Interrupt.o
+                0x000000001c004c34                intc_handler
  .text.TIMER_HANDLER
-                0x000000001c00454c       0x38 1c102_Interrupt.o
-                0x000000001c00454c                TIMER_HANDLER
+                0x000000001c004e60       0x38 1c102_Interrupt.o
+                0x000000001c004e60                TIMER_HANDLER
  .text.IIC_Delay
-                0x000000001c004584       0x3c iic.o
-                0x000000001c004584                IIC_Delay
+                0x000000001c004e98       0x3c iic.o
+                0x000000001c004e98                IIC_Delay
  .text.IIC_Init
-                0x000000001c0045c0       0x6c iic.o
-                0x000000001c0045c0                IIC_Init
- .text.SDA_IN   0x000000001c00462c       0x30 iic.o
-                0x000000001c00462c                SDA_IN
- .text.SDA_OUT  0x000000001c00465c       0x3c iic.o
-                0x000000001c00465c                SDA_OUT
+                0x000000001c004ed4       0x6c iic.o
+                0x000000001c004ed4                IIC_Init
+ .text.SDA_IN   0x000000001c004f40       0x30 iic.o
+                0x000000001c004f40                SDA_IN
+ .text.SDA_OUT  0x000000001c004f70       0x3c iic.o
+                0x000000001c004f70                SDA_OUT
  .text.IIC_Start
-                0x000000001c004698       0x60 iic.o
-                0x000000001c004698                IIC_Start
+                0x000000001c004fac       0x60 iic.o
+                0x000000001c004fac                IIC_Start
  .text.IIC_Stop
-                0x000000001c0046f8       0x60 iic.o
-                0x000000001c0046f8                IIC_Stop
+                0x000000001c00500c       0x60 iic.o
+                0x000000001c00500c                IIC_Stop
  .text.IIC_Wait_Ack
-                0x000000001c004758       0x94 iic.o
-                0x000000001c004758                IIC_Wait_Ack
+                0x000000001c00506c       0x94 iic.o
+                0x000000001c00506c                IIC_Wait_Ack
  .text.IIC_Send_Byte
-                0x000000001c0047ec       0xac iic.o
-                0x000000001c0047ec                IIC_Send_Byte
+                0x000000001c005100       0xac iic.o
+                0x000000001c005100                IIC_Send_Byte
+ .text.DHT11_Rst
+                0x000000001c0051ac       0x50 dht11.o
+                0x000000001c0051ac                DHT11_Rst
+ .text.DHT11_IO_In
+                0x000000001c0051fc       0x30 dht11.o
+                0x000000001c0051fc                DHT11_IO_In
+ .text.DHT11_IO_Out
+                0x000000001c00522c       0x30 dht11.o
+                0x000000001c00522c                DHT11_IO_Out
+ .text.DHT11_Check
+                0x000000001c00525c       0xb4 dht11.o
+                0x000000001c00525c                DHT11_Check
+ .text.DHT11_Read_Bit
+                0x000000001c005310       0xa8 dht11.o
+                0x000000001c005310                DHT11_Read_Bit
+ .text.DHT11_Read_Byte
+                0x000000001c0053b8       0x70 dht11.o
+                0x000000001c0053b8                DHT11_Read_Byte
+ .text.DHT11_Read_Data
+                0x000000001c005428      0x10c dht11.o
+                0x000000001c005428                DHT11_Read_Data
+ .text.DHT11_Init
+                0x000000001c005534       0x40 dht11.o
+                0x000000001c005534                DHT11_Init
  .text.OLED_Hardware_Init
-                0x000000001c004898       0x28 oled.o
-                0x000000001c004898                OLED_Hardware_Init
+                0x000000001c005574       0x28 oled.o
+                0x000000001c005574                OLED_Hardware_Init
  .text.OLED_WR_Byte
-                0x000000001c0048c0       0x6c oled.o
-                0x000000001c0048c0                OLED_WR_Byte
+                0x000000001c00559c       0x6c oled.o
+                0x000000001c00559c                OLED_WR_Byte
  .text.OLED_Set_Pos
-                0x000000001c00492c       0x88 oled.o
-                0x000000001c00492c                OLED_Set_Pos
+                0x000000001c005608       0x88 oled.o
+                0x000000001c005608                OLED_Set_Pos
  .text.OLED_Clear
-                0x000000001c0049b4       0x9c oled.o
-                0x000000001c0049b4                OLED_Clear
+                0x000000001c005690       0x9c oled.o
+                0x000000001c005690                OLED_Clear
  .text.OLED_Init
-                0x000000001c004a50      0x1c4 oled.o
-                0x000000001c004a50                OLED_Init
- .text.Queue_Init
-                0x000000001c004c14       0x4c queue.o
-                0x000000001c004c14                Queue_Init
+                0x000000001c00572c      0x1c4 oled.o
+                0x000000001c00572c                OLED_Init
+ .text.OLED_ShowChar
+                0x000000001c0058f0      0x128 oled.o
+                0x000000001c0058f0                OLED_ShowChar
+ .text.OLED_ShowString
+                0x000000001c005a18      0x12c oled.o
+                0x000000001c005a18                OLED_ShowString
+ .text.OLED_ShowNum
+                0x000000001c005b44      0x144 oled.o
+                0x000000001c005b44                OLED_ShowNum
+ .text.OLED_DrawFont16
+                0x000000001c005c88      0x19c oled.o
+                0x000000001c005c88                OLED_DrawFont16
+ .text.OLED_DrawFont32
+                0x000000001c005e24      0x1a8 oled.o
+                0x000000001c005e24                OLED_DrawFont32
+ .text.OLED_Show_Str
+                0x000000001c005fcc      0x270 oled.o
+                0x000000001c005fcc                OLED_Show_Str
+ .text.KEY_init
+                0x000000001c00623c       0x54 key.o
+                0x000000001c00623c                KEY_init
+ .text.KEY_Check
+                0x000000001c006290       0xa0 key.o
+                0x000000001c006290                KEY_Check
+ .text.esp8266_check_cmd
+                0x000000001c006330       0xe8 esp8266.o
+                0x000000001c006330                esp8266_check_cmd
  .text.Queue_isEmpty
-                0x000000001c004c60       0x50 queue.o
-                0x000000001c004c60                Queue_isEmpty
+                0x000000001c006418       0x50 queue.o
+                0x000000001c006418                Queue_isEmpty
  .text.Queue_HadUse
-                0x000000001c004cb0       0x64 queue.o
-                0x000000001c004cb0                Queue_HadUse
+                0x000000001c006468       0x64 queue.o
+                0x000000001c006468                Queue_HadUse
  .text.Queue_NoUse
-                0x000000001c004d14       0x6c queue.o
-                0x000000001c004d14                Queue_NoUse
+                0x000000001c0064cc       0x6c queue.o
+                0x000000001c0064cc                Queue_NoUse
  .text.Queue_Wirte
-                0x000000001c004d80       0xdc queue.o
-                0x000000001c004d80                Queue_Wirte
+                0x000000001c006538       0xdc queue.o
+                0x000000001c006538                Queue_Wirte
  .text.Queue_Read
-                0x000000001c004e5c       0xdc queue.o
-                0x000000001c004e5c                Queue_Read
- .text.main     0x000000001c004f38      0x128 1c102_main.o
-                0x000000001c004f38                main
-                0x000000001c005060                . = ALIGN (0x4)
-                0x000000001c005060                _etext = .
+                0x000000001c006614       0xdc queue.o
+                0x000000001c006614                Queue_Read
+ .text.Display  0x000000001c0066f0      0x564 1c102_main.o
+                0x000000001c0066f0                Display
+ .text.Set_time1
+                0x000000001c006c54      0x3a8 1c102_main.o
+                0x000000001c006c54                Set_time1
+ .text.Set_time2
+                0x000000001c006ffc      0x3b0 1c102_main.o
+                0x000000001c006ffc                Set_time2
+ .text.Set_time3
+                0x000000001c0073ac      0x3a8 1c102_main.o
+                0x000000001c0073ac                Set_time3
+ .text.Set_num  0x000000001c007754      0x3c4 1c102_main.o
+                0x000000001c007754                Set_num
+ .text.main     0x000000001c007b18      0x1fc 1c102_main.o
+                0x000000001c007b18                main
+ .text.BEEP_Init
+                0x000000001c007d14       0x30 BEEP.o
+                0x000000001c007d14                BEEP_Init
+                0x000000001c007d44                . = ALIGN (0x4)
+                0x000000001c007d44                _etext = .
 
-.rodata         0x000000001c005060      0xa30
-                0x000000001c005060                . = ALIGN (0x4)
+.rodata         0x000000001c007d60     0x20a8
+                0x000000001c007d60                . = ALIGN (0x4)
  *(.rodata .rodata.*)
- .rodata        0x000000001c005060       0x1a serial.o
-                0x000000001c005060                msg_wakeup
- *fill*         0x000000001c00507a        0x2 
- .rodata        0x000000001c00507c       0x38 init.o
+ .rodata        0x000000001c007d60       0x1a serial.o
+                0x000000001c007d60                msg_wakeup
+ *fill*         0x000000001c007d7a        0x2 
+ .rodata        0x000000001c007d7c       0x38 init.o
  .rodata.myprintf
-                0x000000001c0050b4      0x150 ls1x_printf.o
- .rodata        0x000000001c005204      0x387 ls1x_logo.o
- *fill*         0x000000001c00558b        0x1 
- .rodata        0x000000001c00558c       0x8d ls1c102_touch.o
- *fill*         0x000000001c005619        0x3 
- .rodata        0x000000001c00561c       0xaf 1c102_Interrupt.o
- *fill*         0x000000001c0056cb        0x1 
+                0x000000001c007db4      0x150 ls1x_printf.o
+ .rodata.vsprintf
+                0x000000001c007f04      0x150 ls1x_printf.o
+ .rodata        0x000000001c008054      0x387 ls1x_logo.o
+ *fill*         0x000000001c0083db        0x1 
+ .rodata        0x000000001c0083dc       0x8d ls1c102_touch.o
+ *fill*         0x000000001c008469        0x3 
+ .rodata        0x000000001c00846c       0xd7 1c102_Interrupt.o
+ *fill*         0x000000001c008543        0x1 
  .rodata.Ext_IrqHandle
-                0x000000001c0056cc       0x80 1c102_Interrupt.o
-                0x000000001c0056cc                Ext_IrqHandle
+                0x000000001c008544       0x80 1c102_Interrupt.o
+                0x000000001c008544                Ext_IrqHandle
  .rodata.BAT_FAIL
-                0x000000001c00574c       0x44 1c102_Interrupt.o
+                0x000000001c0085c4       0x44 1c102_Interrupt.o
  .rodata.__FUNCTION__.1575
-                0x000000001c005790       0x18 1c102_Interrupt.o
+                0x000000001c008608       0x18 1c102_Interrupt.o
  .rodata.__FUNCTION__.1579
-                0x000000001c0057a8       0x18 1c102_Interrupt.o
+                0x000000001c008620       0x18 1c102_Interrupt.o
  .rodata.__FUNCTION__.1583
-                0x000000001c0057c0       0x18 1c102_Interrupt.o
+                0x000000001c008638       0x18 1c102_Interrupt.o
  .rodata.__FUNCTION__.1587
-                0x000000001c0057d8       0x18 1c102_Interrupt.o
+                0x000000001c008650       0x18 1c102_Interrupt.o
  .rodata.__FUNCTION__.1591
-                0x000000001c0057f0       0x18 1c102_Interrupt.o
+                0x000000001c008668       0x18 1c102_Interrupt.o
  .rodata.__FUNCTION__.1595
-                0x000000001c005808       0x18 1c102_Interrupt.o
+                0x000000001c008680       0x18 1c102_Interrupt.o
  .rodata.__FUNCTION__.1599
-                0x000000001c005820       0x18 1c102_Interrupt.o
+                0x000000001c008698       0x18 1c102_Interrupt.o
  .rodata.__FUNCTION__.1603
-                0x000000001c005838       0x18 1c102_Interrupt.o
+                0x000000001c0086b0       0x18 1c102_Interrupt.o
  .rodata.__FUNCTION__.1607
-                0x000000001c005850       0x18 1c102_Interrupt.o
+                0x000000001c0086c8       0x18 1c102_Interrupt.o
  .rodata.__FUNCTION__.1611
-                0x000000001c005868       0x18 1c102_Interrupt.o
+                0x000000001c0086e0       0x18 1c102_Interrupt.o
  .rodata.__FUNCTION__.1615
-                0x000000001c005880       0x18 1c102_Interrupt.o
+                0x000000001c0086f8       0x18 1c102_Interrupt.o
  .rodata.__FUNCTION__.1619
-                0x000000001c005898       0x18 1c102_Interrupt.o
+                0x000000001c008710       0x18 1c102_Interrupt.o
  .rodata.__FUNCTION__.1623
-                0x000000001c0058b0       0x18 1c102_Interrupt.o
+                0x000000001c008728       0x18 1c102_Interrupt.o
  .rodata.__FUNCTION__.1627
-                0x000000001c0058c8       0x18 1c102_Interrupt.o
+                0x000000001c008740       0x18 1c102_Interrupt.o
  .rodata.__FUNCTION__.1631
-                0x000000001c0058e0       0x18 1c102_Interrupt.o
+                0x000000001c008758       0x18 1c102_Interrupt.o
  .rodata.__FUNCTION__.1635
-                0x000000001c0058f8       0x18 1c102_Interrupt.o
+                0x000000001c008770       0x18 1c102_Interrupt.o
  .rodata.__FUNCTION__.1639
-                0x000000001c005910       0x18 1c102_Interrupt.o
+                0x000000001c008788       0x18 1c102_Interrupt.o
  .rodata.__FUNCTION__.1643
-                0x000000001c005928       0x18 1c102_Interrupt.o
+                0x000000001c0087a0       0x18 1c102_Interrupt.o
  .rodata.__FUNCTION__.1647
-                0x000000001c005940       0x18 1c102_Interrupt.o
+                0x000000001c0087b8       0x18 1c102_Interrupt.o
  .rodata.__FUNCTION__.1651
-                0x000000001c005958       0x18 1c102_Interrupt.o
+                0x000000001c0087d0       0x18 1c102_Interrupt.o
  .rodata.__FUNCTION__.1655
-                0x000000001c005970       0x18 1c102_Interrupt.o
+                0x000000001c0087e8       0x18 1c102_Interrupt.o
  .rodata.__FUNCTION__.1659
-                0x000000001c005988       0x18 1c102_Interrupt.o
+                0x000000001c008800       0x18 1c102_Interrupt.o
  .rodata.__FUNCTION__.1663
-                0x000000001c0059a0       0x18 1c102_Interrupt.o
+                0x000000001c008818       0x18 1c102_Interrupt.o
  .rodata.__FUNCTION__.1667
-                0x000000001c0059b8       0x18 1c102_Interrupt.o
+                0x000000001c008830       0x18 1c102_Interrupt.o
  .rodata.__FUNCTION__.1671
-                0x000000001c0059d0       0x18 1c102_Interrupt.o
+                0x000000001c008848       0x18 1c102_Interrupt.o
  .rodata.__FUNCTION__.1675
-                0x000000001c0059e8       0x18 1c102_Interrupt.o
+                0x000000001c008860       0x18 1c102_Interrupt.o
  .rodata.__FUNCTION__.1679
-                0x000000001c005a00       0x18 1c102_Interrupt.o
+                0x000000001c008878       0x18 1c102_Interrupt.o
  .rodata.__FUNCTION__.1683
-                0x000000001c005a18       0x18 1c102_Interrupt.o
+                0x000000001c008890       0x18 1c102_Interrupt.o
  .rodata.__FUNCTION__.1687
-                0x000000001c005a30       0x18 1c102_Interrupt.o
+                0x000000001c0088a8       0x18 1c102_Interrupt.o
  .rodata.__FUNCTION__.1691
-                0x000000001c005a48       0x18 1c102_Interrupt.o
+                0x000000001c0088c0       0x18 1c102_Interrupt.o
  .rodata.__FUNCTION__.1695
-                0x000000001c005a60       0x18 1c102_Interrupt.o
+                0x000000001c0088d8       0x18 1c102_Interrupt.o
  .rodata.__FUNCTION__.1699
-                0x000000001c005a78       0x18 1c102_Interrupt.o
-                0x000000001c005a90                . = ALIGN (0x4)
-                0x000000001c005a90                _sidata = ALIGN (., 0x4)
-                0x000000001c005a90                . = ALIGN (0x4)
+                0x000000001c0088f0       0x18 1c102_Interrupt.o
+ .rodata.asc2_1608
+                0x000000001c008908      0x5f0 oled.o
+                0x000000001c008908                asc2_1608
+ .rodata.tfont16
+                0x000000001c008ef8      0x38e oled.o
+                0x000000001c008ef8                tfont16
+ *fill*         0x000000001c009286        0x2 
+ .rodata.tfont32
+                0x000000001c009288      0xa3c oled.o
+                0x000000001c009288                tfont32
+ .rodata        0x000000001c009cc4        0x6 oled.o
+ *fill*         0x000000001c009cca        0x2 
+ .rodata        0x000000001c009ccc       0x47 esp8266.o
+ *fill*         0x000000001c009d13        0x1 
+ .rodata        0x000000001c009d14       0xe0 1c102_main.o
+ .rodata.main   0x000000001c009df4       0x14 1c102_main.o
+                0x000000001c009e08                . = ALIGN (0x4)
+                0x000000001c009e08                _sidata = ALIGN (., 0x4)
+                0x000000001c009e08                . = ALIGN (0x4)
 
-.rela.dyn       0x000000001c005a90        0x0
- .rela.got      0x000000001c005a90        0x0 start.o
+.rela.dyn       0x000000001c009e08        0x0
+ .rela.got      0x000000001c009e08        0x0 start.o
  .rela.rodata.myprintf
-                0x000000001c005a90        0x0 start.o
+                0x000000001c009e08        0x0 start.o
+ .rela.rodata.vsprintf
+                0x000000001c009e08        0x0 start.o
  .rela.rodata.Ext_IrqHandle
-                0x000000001c005a90        0x0 start.o
+                0x000000001c009e08        0x0 start.o
  .rela.rodata.BAT_FAIL
-                0x000000001c005a90        0x0 start.o
+                0x000000001c009e08        0x0 start.o
+ .rela.rodata.main
+                0x000000001c009e08        0x0 start.o
 
-.data           0x0000000080001000       0x28 load address 0x000000001c005a90
+.data           0x0000000080001000       0x50 load address 0x000000001c009e08
                 0x0000000080001000                _sdata = .
                 0x0000000080001000                . = ALIGN (0x4)
  *(.got.plt)
  .got.plt       0x0000000080001000        0x0 start.o
                 0x0000000080001000                . = ALIGN (0x4)
  *(.got)
- .got           0x0000000080001000       0x20 start.o
+ .got           0x0000000080001000       0x34 start.o
                 0x0000000080001000                _GLOBAL_OFFSET_TABLE_
-                0x0000000080001020                . = ALIGN (0x4)
+                0x0000000080001034                . = ALIGN (0x4)
  *(.data .data.*)
  .data.g_SystemFreq
-                0x0000000080001020        0x4 ls1x_clock.o
-                0x0000000080001020                g_SystemFreq
- .data.duty     0x0000000080001024        0x4 1c102_Interrupt.o
-                0x0000000080001024                duty
-                0x0000000080001028                . = ALIGN (0x4)
-                0x0000000080001028                _edata = .
+                0x0000000080001034        0x4 ls1x_clock.o
+                0x0000000080001034                g_SystemFreq
+ .data.data     0x0000000080001038        0x8 1c102_main.o
+                0x0000000080001038                data
+ .data.hour     0x0000000080001040        0x1 1c102_main.o
+                0x0000000080001040                hour
+ .data.min      0x0000000080001041        0x1 1c102_main.o
+                0x0000000080001041                min
+ .data.sec      0x0000000080001042        0x1 1c102_main.o
+                0x0000000080001042                sec
+ .data.h1       0x0000000080001043        0x1 1c102_main.o
+                0x0000000080001043                h1
+ .data.m1       0x0000000080001044        0x1 1c102_main.o
+                0x0000000080001044                m1
+ .data.h2       0x0000000080001045        0x1 1c102_main.o
+                0x0000000080001045                h2
+ .data.m2       0x0000000080001046        0x1 1c102_main.o
+                0x0000000080001046                m2
+ .data.h3       0x0000000080001047        0x1 1c102_main.o
+                0x0000000080001047                h3
+ .data.m3       0x0000000080001048        0x1 1c102_main.o
+                0x0000000080001048                m3
+ .data.s3       0x0000000080001049        0x1 1c102_main.o
+                0x0000000080001049                s3
+ .data.A        0x000000008000104a        0x1 1c102_main.o
+                0x000000008000104a                A
+ .data.B        0x000000008000104b        0x1 1c102_main.o
+                0x000000008000104b                B
+ .data.C        0x000000008000104c        0x1 1c102_main.o
+                0x000000008000104c                C
+ .data.D        0x000000008000104d        0x1 1c102_main.o
+                0x000000008000104d                D
+                0x0000000080001050                . = ALIGN (0x4)
+ *fill*         0x000000008000104e        0x2 
+                0x0000000080001050                _edata = .
 
-.bss            0x0000000080000000      0x29c
+.bss            0x0000000080000000      0x2a8
                 0x0000000080000000                _sbss = .
                 0x0000000080000000                . = ALIGN (0x4)
  *(.sbss)
                 0x0000000080000000                . = ALIGN (0x4)
  *(.bss .bss.*)
- .bss.cnt       0x0000000080000000        0x4 1c102_Interrupt.o
-                0x0000000080000000                cnt
- .bss.receive_Data.1753
-                0x0000000080000004        0x1 1c102_Interrupt.o
-                0x0000000080000008                . = ALIGN (0x4)
- *fill*         0x0000000080000005        0x3 
+ .bss.count     0x0000000080000000        0x1 1c102_Interrupt.o
+                0x0000000080000000                count
+ .bss.receive_Data.1754
+                0x0000000080000001        0x1 1c102_Interrupt.o
+ .bss.wifi_connected
+                0x0000000080000002        0x1 esp8266.o
+                0x0000000080000002                wifi_connected
+ *fill*         0x0000000080000003        0x1 
+ .bss.temperature
+                0x0000000080000004        0x2 1c102_main.o
+ .bss.humidity  0x0000000080000006        0x2 1c102_main.o
+ .bss.mode      0x0000000080000008        0x1 1c102_main.o
+                0x0000000080000008                mode
+ .bss.select    0x0000000080000009        0x1 1c102_main.o
+                0x0000000080000009                select
+ .bss.change    0x000000008000000a        0x1 1c102_main.o
+                0x000000008000000a                change
+ .bss.s1        0x000000008000000b        0x1 1c102_main.o
+                0x000000008000000b                s1
+ .bss.s2        0x000000008000000c        0x1 1c102_main.o
+                0x000000008000000c                s2
+                0x0000000080000010                . = ALIGN (0x4)
+ *fill*         0x000000008000000d        0x3 
  *(.scommon)
-                0x0000000080000008                . = ALIGN (0x4)
+                0x0000000080000010                . = ALIGN (0x4)
  *(COMMON)
- COMMON         0x0000000080000008      0x130 queue.o
-                0x0000000080000008                Circular_queue
- COMMON         0x0000000080000138      0x164 1c102_main.o
-                0x0000000080000138                Read_length
-                0x000000008000013c                str
-                0x0000000080000170                Read_Buffer
-                0x000000008000029c                . = ALIGN (0x4)
-                0x000000008000029c                _ebss = .
+ COMMON         0x0000000080000010      0x130 esp8266.o
+                0x0000000080000010                Read_length
+                0x0000000080000014                Read_Buffer
+ COMMON         0x0000000080000140      0x130 queue.o
+                0x0000000080000140                Circular_queue
+ COMMON         0x0000000080000270       0x36 1c102_main.o
+                0x0000000080000270                Keynum
+                0x0000000080000274                str
+                0x00000000800002a8                . = ALIGN (0x4)
+ *fill*         0x00000000800002a6        0x2 
+                0x00000000800002a8                _ebss = .
 LOAD start.o
 LOAD serial.o
 LOAD wakeup.o
@@ -1078,10 +1217,13 @@ LOAD 1c102_cmdline.o
 LOAD 1c102_cmd.o
 LOAD 1c102_Interrupt.o
 LOAD iic.o
-LOAD led.o
+LOAD dht11.o
 LOAD oled.o
+LOAD key.o
+LOAD esp8266.o
 LOAD queue.o
 LOAD 1c102_main.o
+LOAD BEEP.o
 OUTPUT(1c102_demo.elf elf32-loongarch)
 
 .comment        0x0000000000000000       0x11
@@ -1103,6 +1245,10 @@ OUTPUT(1c102_demo.elf elf32-loongarch)
  .comment       0x0000000000000011       0x12 ls1c102_ptimer.o
  .comment       0x0000000000000011       0x12 1c102_Interrupt.o
  .comment       0x0000000000000011       0x12 iic.o
+ .comment       0x0000000000000011       0x12 dht11.o
  .comment       0x0000000000000011       0x12 oled.o
+ .comment       0x0000000000000011       0x12 key.o
+ .comment       0x0000000000000011       0x12 esp8266.o
  .comment       0x0000000000000011       0x12 queue.o
  .comment       0x0000000000000011       0x12 1c102_main.o
+ .comment       0x0000000000000011       0x12 BEEP.o
